@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXORA PS4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #080711;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            background: rgba(20, 16, 38, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            width: 100%;
+            max-width: 480px;
+            padding: 35px 20px;
+            border-radius: 24px;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
+        }
+        /* تصميم الصورة الشخصية */
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #a855f7;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6), 0 0 10px rgba(168, 85, 247, 0.8);
+            margin-bottom: 15px;
+        }
+        /* العنوان الرئيسي */
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #38bdf8, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+        /* النص الوصفي */
+        p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        /* صندوق عرض الكليشة أو الحالة */
+        .status-box {
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #38bdf8;
+            margin: 15px 0;
+            background: rgba(10, 10, 25, 0.85);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+            min-height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.6;
+        }
+        /* الزر التفاعلي */
+        .btn {
+            background: linear-gradient(135deg, #38bdf8, #a855f7);
+            color: #ffffff;
+            border: none;
+            padding: 16px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn:hover {
+            opacity: 0.95;
+            box-shadow: 0 6px 25px rgba(56, 189, 248, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- الصورة الصغيرة للمشروع -->
+        <img src="logo.jpg" alt="NEXORA PS4" class="profile-img">
+
+        <!-- العنوان الرئيسي -->
+        <h1>موقع تعديل من 5.05 إلى 13.52</h1>
+        
+        <p>NEXORA PS4 Jailbreak & Exploits</p>
+        
+        <!-- صندوق عرض الكليشة (يتغير النص فيه عند الضغط) -->
+        <div class="status-box" id="statusBox">
+            اضغط على زر التفعيل أدناه لبدء فحص الثغرة وتحميل ملفات النظام...
+        </div>
+        
+        <!-- زر التفاعل -->
+        <button class="btn" onclick="runJailbreak()">تفعيل الآن 🚀</button>
+    </div>
+
+    <script>
+        function runJailbreak() {
+            const box = document.getElementById('statusBox');
+            
+            // المرحلة الأولى
+            box.innerHTML = "⏳ جاري فحص إصدار النظام والاتصال بثغرة الـ WebKit...";
+            
+            // المرحلة الثانية بعد ثانية ونصف
+            setTimeout(() => {
+                box.innerHTML = "📥 جاري حقن ملفات التعديل (Payloads) وتحميل الذاكرة المؤقتة...";
+            }, 1500);
+
+            // المرحلة الأخيرة بعد 3 ثواني
+            setTimeout(() => {
+                box.innerHTML = "✅ تم تفعيل التعديل بنجاح! يمكنك الآن الاستمتاع بتشغيل الألعاب.";
+                box.style.color = "#4ade80"; // يتغير لون النص إلى الأخضر للدلالة على النجاح
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
