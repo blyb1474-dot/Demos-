@@ -3,142 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXORA PS4</title>
+    <title>NEXORA PS4 | Jailbreak</title>
     <style>
+        :root {
+            --bg: #070b14;
+            --panel: rgba(15, 23, 42, 0.86);
+            --primary: #55d6ff;
+            --secondary: #9b5cff;
+            --success: #34d399;
+            --text: #e5f3ff;
+            --muted: #9fb5c9;
+            --border: rgba(93, 166, 255, 0.35);
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         body {
-            background-color: #080711;
-            color: #ffffff;
             min-height: 100vh;
+            background:
+                radial-gradient(circle at top, rgba(85, 214, 255, 0.18), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(155, 92, 255, 0.2), transparent 30%),
+                var(--bg);
+            color: var(--text);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            text-align: center;
+            padding: 32px 16px;
         }
-        .container {
-            background: rgba(20, 16, 38, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            width: 100%;
-            max-width: 480px;
-            padding: 35px 20px;
-            border-radius: 24px;
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
+
+        .wrap {
+            width: min(1100px, 100%);
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+            align-items: center;
         }
-        /* تصميم الصورة الشخصية */
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #a855f7;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6), 0 0 10px rgba(168, 85, 247, 0.8);
-            margin-bottom: 15px;
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            box-shadow: 0 0 40px rgba(85, 214, 255, 0.08), 0 0 18px rgba(155, 92, 255, 0.12);
+            border-radius: 26px;
+            backdrop-filter: blur(8px);
         }
-        /* العنوان الرئيسي */
+
+        .hero {
+            padding: 28px 24px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: grid;
+            place-items: center;
+            box-shadow: 0 0 18px rgba(85, 214, 255, 0.35);
+            font-size: 1.2rem;
+        }
+
+        .badge {
+            padding: 8px 12px;
+            background: rgba(52, 211, 153, 0.12);
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            color: var(--success);
+            border-radius: 999px;
+            font-size: 0.82rem;
+        }
+
         h1 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-            background: linear-gradient(90deg, #38bdf8, #ec4899);
+            font-size: clamp(2.1rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #e5f3ff 0%, var(--primary) 30%, #d7b3ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: bold;
-            line-height: 1.4;
         }
-        /* النص الوصفي */
-        p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-        /* صندوق عرض الكليشة أو الحالة */
-        .status-box {
+
+        .sub {
             font-size: 1.05rem;
-            font-weight: bold;
-            color: #38bdf8;
-            margin: 15px 0;
-            background: rgba(10, 10, 25, 0.85);
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            max-width: 620px;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 26px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: 0.2s ease;
+            color: white;
+            padding: 16px 24px;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 10px 26px rgba(87, 109, 255, 0.4);
+        }
+
+        .btn.secondary {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(110px, 1fr));
+            gap: 12px;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255,255,255,0.06);
             border-radius: 16px;
+            padding: 16px 14px;
+            text-align: center;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .side {
             padding: 20px;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        .device-card {
+            background: linear-gradient(180deg, rgba(17, 24, 39, 1), rgba(11, 18, 28, 1));
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 18px;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+        }
+
+        .device-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .device-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .device-status {
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--success);
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(52, 211, 153, 0.2);
+        }
+
+        .console {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(180deg, #0c1527, #070d17);
+            overflow: hidden;
+            margin-bottom: 18px;
+        }
+
+        .console::before {
+            content: "";
+            position: absolute;
+            inset: 18px 26px 26px 26px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(85,214,255,0.15), rgba(155,92,255,0.18));
+            border: 1px solid rgba(85,214,255,0.18);
+        }
+
+        .screen {
+            position: absolute;
+            inset: 34px 42px 68px 42px;
+            border-radius: 12px;
+            background: radial-gradient(circle at top, rgba(85,214,255,0.2), rgba(17,24,39,0.3) 40%, rgba(2,6,23,1) 100%);
+            border: 1px solid rgba(255,255,255,0.08);
+            display: grid;
+            place-items: center;
+            color: #dff6ff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .screen span {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        .controller {
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            width: 220px;
+            height: 62px;
+            transform: translateX(-50%);
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(18,26,42,0.7), rgba(11,17,27,0.95));
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .status-box {
+            background: rgba(6, 12, 22, 0.95);
+            border: 1px solid rgba(85,214,255,0.2);
+            border-radius: 16px;
+            padding: 18px 16px;
+            color: var(--primary);
             min-height: 110px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            line-height: 1.6;
+            font-size: 1rem;
+            line-height: 1.8;
+            transition: 0.2s ease;
         }
-        /* الزر التفاعلي */
-        .btn {
-            background: linear-gradient(135deg, #38bdf8, #a855f7);
-            color: #ffffff;
-            border: none;
-            padding: 16px 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+
+        .status-box.success {
+            color: var(--success);
+            border-color: rgba(52, 211, 153, 0.28);
+        }
+
+        .launch-btn {
             width: 100%;
-            margin-top: 10px;
+            margin-top: 16px;
+            background: linear-gradient(135deg, #3dd2ff, #8b5cf6);
+            color: white;
+            font-size: 1.1rem;
         }
-        .btn:active {
-            transform: scale(0.96);
-        }
-        .btn:hover {
-            opacity: 0.95;
-            box-shadow: 0 6px 25px rgba(56, 189, 248, 0.6);
+
+        @media (max-width: 860px) {
+            .wrap {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="wrap">
+        <section class="panel hero">
+            <div class="topbar">
+                <div class="brand">
+                    <div class="logo">N</div>
+                    <span>NEXORA PS4</span>
+                </div>
+                <span class="badge">مستوى التجربة: 13.52</span>
+            </div>
 
-    <div class="container">
-        <!-- الصورة الصغيرة للمشروع -->
-        <img src="logo.jpg" alt="NEXORA PS4" class="profile-img">
+            <h1>تفعيل Jailbreak PS4</h1>
+            <p class="sub">
+                منصة احترافية لتجربة التعديل على أنظمة PS4، مع دعم النماذج الحديثة وقدرات التفعيل السريعة عبر واجهة سهلة الاستخدام.
+                جاهز للاستخدام بشكل تجريبي ومناسب للعرض في المواقع الترويجية.
+            </p>
 
-        <!-- العنوان الرئيسي -->
-        <h1>موقع تعديل من 5.05 إلى 13.52</h1>
-        
-        <p>NEXORA PS4 Jailbreak & Exploits</p>
-        
-        <!-- صندوق عرض الكليشة (يتغير النص فيه عند الضغط) -->
-        <div class="status-box" id="statusBox">
-            اضغط على زر التفعيل أدناه لبدء فحص الثغرة وتحميل ملفات النظام...
-        </div>
-        
-        <!-- زر التفاعل -->
-        <button class="btn" onclick="runJailbreak()">تفعيل الآن 🚀</button>
+            <div class="cta-row">
+                <button class="btn primary" onclick="runJailbreak()">تفعيل الآن</button>
+                <button class="btn secondary" onclick="showInfo()">معلومات أكثر</button>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <strong>2.1K</strong>
+                    <span>تفعيل يومي</span>
+                </div>
+                <div class="stat">
+                    <strong>9.00</strong>
+                    <span>إصدار يدعم</span>
+                </div>
+                <div class="stat">
+                    <strong>24/7</strong>
+                    <span>خدمة الدعم</span>
+                </div>
+            </div>
+        </section>
+
+        <aside class="panel side">
+            <div class="device-card">
+                <div class="device-head">
+                    <div class="device-title">PS4 Console</div>
+                    <div class="device-status">متصل</div>
+                </div>
+
+                <div class="console">
+                    <div class="screen">
+                        NEXORA
+                        <span>System Ready</span>
+                    </div>
+                    <div class="controller"></div>
+                </div>
+
+                <div class="status-box" id="statusBox">
+                    اضغط على زر التفعيل أدناه لبدء فحص الجهاز وتحميل البيانات...
+                </div>
+
+                <button class="btn launch-btn" onclick="runJailbreak()">بدء التفعيل 🚀</button>
+            </div>
+        </aside>
     </div>
 
     <script>
         function runJailbreak() {
             const box = document.getElementById('statusBox');
-            
-            // المرحلة الأولى
-            box.innerHTML = "⏳ جاري فحص إصدار النظام والاتصال بثغرة الـ WebKit...";
-            
-            // المرحلة الثانية بعد ثانية ونصف
-            setTimeout(() => {
-                box.innerHTML = "📥 جاري حقن ملفات التعديل (Payloads) وتحميل الذاكرة المؤقتة...";
-            }, 1500);
+            box.classList.remove('success');
+            box.innerHTML = '⏳ جاري فحص إصدار النظام، والتحقق من الاتصال بالثغرة، وانتظار الأنظمة المحمّلة...';
 
-            // المرحلة الأخيرة بعد 3 ثواني
             setTimeout(() => {
-                box.innerHTML = "✅ تم تفعيل التعديل بنجاح! يمكنك الآن الاستمتاع بتشغيل الألعاب.";
-                box.style.color = "#4ade80"; // يتغير لون النص إلى الأخضر للدلالة على النجاح
-            }, 3000);
+                box.innerHTML = '📦 جاري تجهيز الـ Payloads وحقن ملفات التشغيل في الذاكرة المؤقتة...';
+            }, 1600);
+
+            setTimeout(() => {
+                box.innerHTML = '✅ تم تفعيل النظام بنجاح! الجهاز جاهز للتشغيل والاستعراض.';
+                box.classList.add('success');
+            }, 3400);
+        }
+
+        function showInfo() {
+            const box = document.getElementById('statusBox');
+            box.classList.remove('success');
+            box.innerHTML = 'ℹ️ التفعيل التجريبي يدعم أنظمة PS4 ذات الإصدارات المحددة، ويعرض واجهة احترافية للعرض والتجربة فقط.';
         }
     </script>
-
 </body>
 </html>
